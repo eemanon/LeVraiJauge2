@@ -28,14 +28,14 @@ public class JaugeTest{
 	public void initialiser() throws Exception{
 		jauge = creerJauge(1.0f, 10.0f, 5.0f);
 		jauge1 = creerJauge(1, 10);
-		jauge2 = creerJauge(-10, -1, -5);
-		jauge3 = creerJauge(1, 5, 10);
-		jauge4 = creerJauge(100,100,100);
-		jaugeBis = creerJauge(-100, -200, 100);
-		jauge5 = creerJauge(100, 200, 150);
-		jauge6 = creerJauge(100, 200, 301);
-		jauge7 = creerJauge(0,300,321);
-		jauge8 = creerJauge(300,302, 301);
+		jauge2 = creerJauge(1, 10, 5);
+		//jauge3 = creerJauge(1, 5, 10);
+		//jauge4 = creerJauge(100,100,100);
+		//jaugeBis = creerJauge(-100, -200, 100);
+		//jauge5 = creerJauge(100, 200, 150);
+		//jauge6 = creerJauge(100, 200, 301);
+		//jauge7 = creerJauge(0,300,321);
+		//jauge8 = creerJauge(300,302, 301);
 	}
 	
 	@After
@@ -43,14 +43,19 @@ public class JaugeTest{
 		jauge = null;
 		jauge1 = null;
 		jauge2 = null;
-		jauge3 = null;
-		jauge4 = null;
-		jauge5 = null;
-		jauge6 = null;
-		jauge7 = null;
-		jauge8 = null;
-		jaugeBis = null;
+		//jauge3 = null;
+		//jauge4 = null;
+		//jauge5 = null;
+		//jauge6 = null;
+		//jauge7 = null;
+		//jauge8 = null;
+		//jaugeBis = null;
 		
+	}
+	@Test
+	public void testCreationNonValide() {
+		IJauge inverse = creerJauge ( 78 , 13 , 0 );
+		IJauge egale = creerJauge(-45 , -45, -45);
 	}
 	@Test
 	public void testEstRouge() {
@@ -121,12 +126,5 @@ public class JaugeTest{
 	@Test
 	public void testInferieurIntervalle() {
 		assert(!jauge.estBleu() && !jauge.estRouge() && jauge.estVert()):"la val de depart est trop petite!";	
-	}
-	@Test
-	public void testCreationNonValide() {
-		IJauge inverse = creerJauge ( 78 , 13 , 0 );
-		IJauge egale = creerJauge(-45 , -45, -45);
-	}
-
-	
+	}	
 }
