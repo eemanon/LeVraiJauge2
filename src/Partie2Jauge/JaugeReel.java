@@ -15,7 +15,6 @@ public class JaugeReel implements IJauge{
 	 */  
 	  public JaugeReel(float vigieMin, float vigieMax, float depart) {
 	    setVal(new Placeholder(0,depart, 0));
-	    System.out.println("tamere");
 	    min = vigieMin;
 	    max = vigieMax;
 		validParams();

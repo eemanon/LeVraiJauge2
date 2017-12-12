@@ -54,7 +54,14 @@ public class JaugeTest{
 	}
 	@Test
 	public void testCreationNonValide() {
-		IJauge inverse = creerJauge ( 78 , 13 , 0 );
+		boolean catched = false;
+		try {
+			IJauge inverse = creerJauge ( 78 , 13 , 0 );
+		} catch (IllegalArgumentException e) {
+			catched = true;
+		}
+		if(!catched)
+			assert false: "sans exception :(";
 		IJauge egale = creerJauge(-45 , -45, -45);
 	}
 	@Test
