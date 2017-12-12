@@ -1,4 +1,4 @@
-package Partie2;
+package Partie2Jauge;
 
 public interface IJauge {
 	public boolean estRouge();

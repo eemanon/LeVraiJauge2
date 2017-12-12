@@ -1,9 +1,9 @@
-package Partie2;
+package Partie2Jauge;
 
-public class JaugeDistance implements IJauge {
+public class JaugeNegatif implements IJauge {
 	  private long valeur;
-	  private final long distanceVigi1;
-	  private final long distanceVigi2;
+	  private final long min;
+	  private final long max;
 
 	  /**
 	   * Construit une instance en précisant la valeur de départ de la Jauge
@@ -13,9 +13,10 @@ public class JaugeDistance implements IJauge {
 	   * @param vigieMax valeur maximale de l'intervalle de vigie.
 	   * @param depart   valeur initiale de la jauge.
 	 */  
-	  public JaugeDistance(long vigieMin, long vigieMax) {
-	    distanceVigi1 = vigieMin;
-	    distanceVigi2 = vigieMax;
+	  public JaugeNegatif(long vigieMin, long vigieMax, long depart) {
+	    setVal(new Placeholder(0, 0, depart));
+	    min = -vigieMin;
+	    max = -vigieMax;
 	    /* Le constructeur d'une classe permet d'initialiser l'etat de l'instance creee.
 	     * Son nom correspond toujours au nom de la classe. Il n'y a pas de type de retour.
 	     */
@@ -29,7 +30,7 @@ public class JaugeDistance implements IJauge {
 	   *
 	   */
 	  public boolean estRouge() {
-	    return 0 > distanceVigi2;
+	    return getVal().getTlong() >= getMax().getTlong();
 	  }
 
 	  /**
@@ -40,7 +41,7 @@ public class JaugeDistance implements IJauge {
 	   */
 	  public boolean estVert() {
 	    //return !(estBleu() && estRouge());
-	    return distanceVigi1>0 && distanceVigi2 > 0;
+	    return getVal().getTlong() > getMin().getTlong() && getVal().getTlong() < getMax().getTlong();
 	  }
 
 	  /**
@@ -49,7 +50,7 @@ public class JaugeDistance implements IJauge {
 	   * @return vrai si niveau <= vigieMin.
 	   */
 	  public boolean estBleu() {
-	    return distanceVigi1<0;
+	    return getVal().getTlong() <= getMin().getTlong();
 	  }
 
 	  /**
@@ -57,7 +58,7 @@ public class JaugeDistance implements IJauge {
 	   * L'état peut devenir supérieur à vigieMax.
 	   */
 	  public void incrementer() {
-	    valeur =+ 1;
+	    setVal(new Placeholder(0,0, getVal().getTlong() + 1));
 	  }
 
 	  /**
@@ -65,7 +66,7 @@ public class JaugeDistance implements IJauge {
 	   * L'état peut devenir inférieur à la vigieMin.
 	   */
 	  public void decrementer() {
-		    valeur= - 1;
+		    setVal(new Placeholder(0,0, getVal().getTlong() - 1));
 	  }
 
 
@@ -82,29 +83,30 @@ public class JaugeDistance implements IJauge {
 	   * Si l'état d'une instance de cette classe est min=-456, max=23,
 	   * valeur=-7, la concaténation donne la chaîne "<-7 [-456,23]>".
 	   */
-	  public String toString() {
-	    return "<" + getVal().getTlong() + " [" + getMin() + "," + getMax() + "]>";
-	  }
-	
-		public Placeholder getMax() {
-			return new Placeholder(0,0,this.distanceVigi2);
-		}
-	
-	
-		public Placeholder getMin() {
-			return new Placeholder(0,0,this.distanceVigi1);
-		}
-	
-	
-		@Override
-		public Placeholder getVal() {
-			return new Placeholder(0,0,this.valeur);
-		}
-	
-	
-		@Override
-		public void setVal(Placeholder p) {
-			this.valeur = p.getTlong();
-			
-		}
+	  @Override
+    public String toString() {
+		return "<" + getVal().getTlong() + " [" + getMin() + "," + getMax() + "]>";
+    }
+	@Override
+	public Placeholder getMax() {
+		return new Placeholder(0,0,this.max);
+	}
+
+	@Override
+	public Placeholder getMin() {
+		return new Placeholder(0,0,this.min);
+	}
+
+
+	@Override
+	public Placeholder getVal() {
+		return new Placeholder(0,0,this.valeur);
+	}
+
+
+	@Override
+	public void setVal(Placeholder p) {
+		this.valeur = p.getTlong();
+		
+	}
 }

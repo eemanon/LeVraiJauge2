@@ -1,4 +1,4 @@
-package Partie2;
+package Partie2Jauge;
 
 import org.junit.After;
 import org.junit.Before;

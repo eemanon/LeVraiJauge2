@@ -1,4 +1,4 @@
-package Partie2;
+package Partie2Jauge;
 
 /**
  * Réalisation d'une Jauge avec des entiers naturels.

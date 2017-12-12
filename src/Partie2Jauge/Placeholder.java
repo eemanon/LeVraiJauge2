@@ -1,4 +1,4 @@
-package Partie2;
+package Partie2Jauge;
 
 public class Placeholder implements Comparable{
 	public Placeholder(int entier, float flottant, long tlong) {

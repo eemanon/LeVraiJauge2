@@ -1,9 +1,9 @@
-package Partie2;
+package Partie2Jauge;
 
-public class JaugeNegatif implements IJauge {
-	  private long valeur;
-	  private final long min;
-	  private final long max;
+public class JaugeReel implements IJauge{
+	  private float valeur;
+	  private final float min;
+	  private final float max;
 
 	  /**
 	   * Construit une instance en précisant la valeur de départ de la Jauge
@@ -13,10 +13,10 @@ public class JaugeNegatif implements IJauge {
 	   * @param vigieMax valeur maximale de l'intervalle de vigie.
 	   * @param depart   valeur initiale de la jauge.
 	 */  
-	  public JaugeNegatif(long vigieMin, long vigieMax, long depart) {
-	    setVal(new Placeholder(0, 0, depart));
-	    min = -vigieMin;
-	    max = -vigieMax;
+	  public JaugeReel(float vigieMin, float vigieMax, float depart) {
+	    setVal(new Placeholder(0,depart, 0));
+	    min = vigieMin;
+	    max = vigieMax;
 	    /* Le constructeur d'une classe permet d'initialiser l'etat de l'instance creee.
 	     * Son nom correspond toujours au nom de la classe. Il n'y a pas de type de retour.
 	     */
@@ -30,7 +30,7 @@ public class JaugeNegatif implements IJauge {
 	   *
 	   */
 	  public boolean estRouge() {
-	    return getVal().getTlong() >= getMax().getTlong();
+	    return getVal().getFlottant() >= getMax().getFlottant();
 	  }
 
 	  /**
@@ -41,7 +41,7 @@ public class JaugeNegatif implements IJauge {
 	   */
 	  public boolean estVert() {
 	    //return !(estBleu() && estRouge());
-	    return getVal().getTlong() > getMin().getTlong() && getVal().getTlong() < getMax().getTlong();
+	    return getVal().getFlottant() > getMin().getFlottant() && getVal().getFlottant() < getMax().getFlottant();
 	  }
 
 	  /**
@@ -50,7 +50,7 @@ public class JaugeNegatif implements IJauge {
 	   * @return vrai si niveau <= vigieMin.
 	   */
 	  public boolean estBleu() {
-	    return getVal().getTlong() <= getMin().getTlong();
+	    return getVal().getFlottant() <= getMin().getFlottant();
 	  }
 
 	  /**
@@ -58,7 +58,7 @@ public class JaugeNegatif implements IJauge {
 	   * L'état peut devenir supérieur à vigieMax.
 	   */
 	  public void incrementer() {
-	    setVal(new Placeholder(0,0, getVal().getTlong() + 1));
+		  setVal(new Placeholder(0, getVal().getFlottant() + 1, 0));
 	  }
 
 	  /**
@@ -66,7 +66,7 @@ public class JaugeNegatif implements IJauge {
 	   * L'état peut devenir inférieur à la vigieMin.
 	   */
 	  public void decrementer() {
-		    setVal(new Placeholder(0,0, getVal().getTlong() - 1));
+		    setVal(new Placeholder(0, getVal().getFlottant() - 1, 0));
 	  }
 
 
@@ -84,29 +84,31 @@ public class JaugeNegatif implements IJauge {
 	   * valeur=-7, la concaténation donne la chaîne "<-7 [-456,23]>".
 	   */
 	  @Override
-    public String toString() {
-		return "<" + getVal().getTlong() + " [" + getMin() + "," + getMax() + "]>";
-    }
-	@Override
-	public Placeholder getMax() {
-		return new Placeholder(0,0,this.max);
-	}
+	  public String toString() {
+	    return "<" + getVal().getFlottant() + " [" + getMin().getFlottant() + "," + getMax().getFlottant() + "]>";
+	  }
 
 	@Override
 	public Placeholder getMin() {
-		return new Placeholder(0,0,this.min);
+		return new Placeholder(0, this.min, 0);
+	}
+
+
+	@Override
+	public Placeholder getMax() {
+		return new Placeholder(0, this.max, 0);
 	}
 
 
 	@Override
 	public Placeholder getVal() {
-		return new Placeholder(0,0,this.valeur);
+		return new Placeholder(0,this.valeur, 0);
 	}
 
 
 	@Override
 	public void setVal(Placeholder p) {
-		this.valeur = p.getTlong();
+		this.valeur = p.getFlottant();
 		
 	}
 }
