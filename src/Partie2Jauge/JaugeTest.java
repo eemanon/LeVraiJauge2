@@ -62,7 +62,16 @@ public class JaugeTest{
 		}
 		if(!catched)
 			assert false: "sans exception :(";
-		IJauge egale = creerJauge(-45 , -45, -45);
+		catched = false;
+		try {
+			IJauge egale = creerJauge(-45 , -45, -45);
+		} catch (IllegalArgumentException e) {
+			catched = true;
+		}
+		if(!catched)
+			assert false: "sans exception :(";
+		
+		
 	}
 	@Test
 	public void testEstRouge() {

@@ -8,10 +8,10 @@ Le premier de cas provoque déjà une exception qui n'est pas catched. Elle remont
 
 ## Exercice 2
 Pourquoi faut-il deux blocs try/catch pour s’assurer que l’exception est bien levée dans
-tous les cas d’instanciation invalide.
-
+tous les cas d’instanciation invalide?
+Parce que les deux appels de fonctions vont lever chaqu'un une exception.
 Vérifier le comportement du test si aucune exception n’est levée.
-? Quelle est la valeur des variables inverse, egale dans la partie catch ? Vérifiez ces valeurs
+Quelle est la valeur des variables inverse, egale dans la partie catch ? Vérifiez ces valeurs
 grâce à une assertion.
-? Comment déclarer les variables pour les utiliser à la fois dans la clause try et la clause
+Comment déclarer les variables pour les utiliser à la fois dans la clause try et la clause
 catch ?
