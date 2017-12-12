@@ -31,10 +31,11 @@ public class JaugeNaturel implements IJauge{
    * @param vigieMax valeur maximale de l'intervalle de vigie.
    * @param depart   valeur initiale de la jauge.
  */  
-  public JaugeNaturel(long vigieMin, long vigieMax, long depart) {
+  public JaugeNaturel(long vigieMin, long vigieMax, long depart){	 
     setValeur(depart);
     min = vigieMin;
     max = vigieMax;
+	validParams();
     /* Le constructeur d'une classe permet d'initialiser l'etat de l'instance creee.
      * Son nom correspond toujours au nom de la classe. Il n'y a pas de type de retour.
      */
@@ -138,6 +139,13 @@ public Placeholder getMin() {
 @Override
 public Placeholder getMax() {
 	return new Placeholder(0,0, this.max);
+}
+
+
+@Override
+public void validParams() throws IllegalArgumentException{
+	if(this.min>=this.max || this.valeur>this.max  || this.valeur < this.min)
+		throw new IllegalArgumentException("c'est pas naturel.");
 }
 
 }

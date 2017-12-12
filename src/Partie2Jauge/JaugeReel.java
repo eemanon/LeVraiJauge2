@@ -15,8 +15,10 @@ public class JaugeReel implements IJauge{
 	 */  
 	  public JaugeReel(float vigieMin, float vigieMax, float depart) {
 	    setVal(new Placeholder(0,depart, 0));
+	    System.out.println("tamere");
 	    min = vigieMin;
 	    max = vigieMax;
+		validParams();
 	    /* Le constructeur d'une classe permet d'initialiser l'etat de l'instance creee.
 	     * Son nom correspond toujours au nom de la classe. Il n'y a pas de type de retour.
 	     */
@@ -109,6 +111,14 @@ public class JaugeReel implements IJauge{
 	@Override
 	public void setVal(Placeholder p) {
 		this.valeur = p.getFlottant();
+		
+	}
+
+
+	@Override
+	public void validParams() throws IllegalArgumentException {
+		if(this.min>=this.max || this.valeur>this.max  || this.valeur < this.min)
+			throw new IllegalArgumentException("Il faut autour de soi, pour exister, des réalités qui durent.");
 		
 	}
 }

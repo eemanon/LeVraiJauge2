@@ -14,9 +14,11 @@ public class JaugeNegatif implements IJauge {
 	   * @param depart   valeur initiale de la jauge.
 	 */  
 	  public JaugeNegatif(long vigieMin, long vigieMax, long depart) {
+
 	    setVal(new Placeholder(0, 0, depart));
 	    min = -vigieMin;
 	    max = -vigieMax;
+		validParams();
 	    /* Le constructeur d'une classe permet d'initialiser l'etat de l'instance creee.
 	     * Son nom correspond toujours au nom de la classe. Il n'y a pas de type de retour.
 	     */
@@ -107,6 +109,14 @@ public class JaugeNegatif implements IJauge {
 	@Override
 	public void setVal(Placeholder p) {
 		this.valeur = p.getTlong();
+		
+	}
+
+
+	@Override
+	public void validParams() throws IllegalArgumentException {
+		if(this.min<=this.max || this.valeur<this.max  || this.valeur > this.min)
+			throw new IllegalArgumentException("soyons un peu plus positif");
 		
 	}
 }

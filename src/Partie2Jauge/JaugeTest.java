@@ -28,7 +28,7 @@ public class JaugeTest{
 	public void initialiser() throws Exception{
 		jauge = creerJauge(1.0f, 10.0f, 5.0f);
 		jauge1 = creerJauge(1, 10);
-		jauge2 = creerJauge(-1, -10, -5);
+		jauge2 = creerJauge(-10, -1, -5);
 		jauge3 = creerJauge(1, 5, 10);
 		jauge4 = creerJauge(100,100,100);
 		jaugeBis = creerJauge(-100, -200, 100);
@@ -78,7 +78,6 @@ public class JaugeTest{
 		Placeholder valeur_avant = jauge.getVal();
 		jauge.incrementer();
 		assert(jauge.getVal().compareTo(valeur_avant) == 1);
-		//fuck those. il me faut un moyen de comparer les valeurs de deux jauges
 	}
 
 	@Test
@@ -92,10 +91,6 @@ public class JaugeTest{
 	public void testDansIntervalle() {
 		assert(!jauge4.estBleu() && jauge4.estVert() && !jauge4.estRouge()):"La valeur n'est pas dans l'intervalle";
 		assert(!jauge5.estBleu() && jauge5.estVert() && !jauge5.estRouge()):"La valeur n'est pas dans l'intervalle";
-	}
-	@Test
-	public void testLimiteVgieMaxInferieurVigieMin() {
-		assert(jauge.getMin().compareTo(jauge.getMax()) == -1):"VgieMax n est pas plus grand que VgieMin!";	
 	}
 	@Test
 	public void run() {
@@ -120,10 +115,6 @@ public class JaugeTest{
 		assert(!jauge6.estBleu() && jauge6.estVert() && !jauge6.estRouge()):"La valeur n'est pas dans l'intervalle";
 	}
 	@Test
-	public void testMaxEgalMin() {
-		assert(jauge1.getMin()==jauge1.getMax()):"VgieMax n est pas egale à VgieMin!";	
-	}
-	@Test
 	public void testSuperieurIntervalle() {
 		assert(!jauge.estBleu() && jauge.estRouge() && !jauge.estVert()):"la valeur de départ est supérieure à l'intervalle :( !";	
 	}
@@ -131,4 +122,11 @@ public class JaugeTest{
 	public void testInferieurIntervalle() {
 		assert(!jauge.estBleu() && !jauge.estRouge() && jauge.estVert()):"la val de depart est trop petite!";	
 	}
+	@Test
+	public void testCreationNonValide() {
+		IJauge inverse = creerJauge ( 78 , 13 , 0 );
+		IJauge egale = creerJauge(-45 , -45, -45);
+	}
+
+	
 }

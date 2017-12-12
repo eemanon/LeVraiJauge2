@@ -16,6 +16,7 @@ public class JaugeDistance implements IJauge {
 	  public JaugeDistance(long vigieMin, long vigieMax) {
 	    distanceVigi1 = vigieMin;
 	    distanceVigi2 = vigieMax;
+		validParams();
 	    /* Le constructeur d'une classe permet d'initialiser l'etat de l'instance creee.
 	     * Son nom correspond toujours au nom de la classe. Il n'y a pas de type de retour.
 	     */
@@ -105,6 +106,14 @@ public class JaugeDistance implements IJauge {
 		@Override
 		public void setVal(Placeholder p) {
 			this.valeur = p.getTlong();
+			
+		}
+
+
+		@Override
+		public void validParams() throws IllegalArgumentException {
+			if(this.distanceVigi1<0 || this.distanceVigi2<0)
+				throw new IllegalArgumentException("je n'irais pas si loin.");
 			
 		}
 }
