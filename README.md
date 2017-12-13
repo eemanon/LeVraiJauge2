@@ -19,5 +19,5 @@ L'assertion inséré l'approuve.
 
 Comment déclarer les variables pour les utiliser à la fois dans la clause try et la clause
 catch ?
-On declare la variable avant la clause try catch et on appelle son constructeur à l'interieur du block
+- On declare la variable avant la clause try catch et on appelle son constructeur à l'interieur du block
 try
