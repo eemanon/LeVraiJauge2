@@ -29,8 +29,8 @@ public class JaugeTest{
 		jauge = creerJauge(1.0f, 10.0f, 5.0f);
 		jauge1 = creerJauge(1, 10);
 		jauge2 = creerJauge(1, 10, 5);
-		//jauge3 = creerJauge(1, 5, 10);
-		//jauge4 = creerJauge(100,100,100);
+		jauge3 = creerJauge(1, 5, 10);
+		jauge4 = creerJauge(100,100,100);
 		//jaugeBis = creerJauge(-100, -200, 100);
 		//jauge5 = creerJauge(100, 200, 150);
 		//jauge6 = creerJauge(100, 200, 301);
@@ -43,8 +43,8 @@ public class JaugeTest{
 		jauge = null;
 		jauge1 = null;
 		jauge2 = null;
-		//jauge3 = null;
-		//jauge4 = null;
+		jauge3 = null;
+		jauge4 = null;
 		//jauge5 = null;
 		//jauge6 = null;
 		//jauge7 = null;
@@ -52,6 +52,10 @@ public class JaugeTest{
 		//jaugeBis = null;
 		
 	}
+	private void testExceptionControlee () throws ClassNotFoundException {
+		//throw new ClassNotFoundException();
+	}
+
 	@Test
 	public void testCreationNonValide() {
 		boolean catched = false;
@@ -119,15 +123,18 @@ public class JaugeTest{
 	}
 	@Test
 	public void run() {
+			     try {
+					testExceptionControlee();
+				 } catch (ClassNotFoundException e) {
+					System.out.println("zoz");
+				 }
 			     System.out.print("Test de JaugeNaturel:");
-
 			     System.out.print(".");
 			     testDansIntervalle();
-
 			      System.out.print(".");
 			      testInferieurIntervalle();
-
 			     System.out.println("OK");
+
 	}
 	@Test
 	public void testDeplacement() {
