@@ -55,9 +55,13 @@ public class JaugeTest{
 	@Test
 	public void testCreationNonValide() {
 		boolean catched = false;
+		IJauge inverse = null;
 		try {
-			IJauge inverse = creerJauge ( 78 , 13 , 0 );
+			inverse  = creerJauge ( 78 , 13 , 0 );
 		} catch (IllegalArgumentException e) {
+			assert(inverse.getMin()== new Placeholder(0, 0.0f, 78)):"La min ne sont pas les memes!";
+			assert(inverse.getMax()== new Placeholder(0, 0.0f, 13)):"La max ne sont pas les memes!";
+			assert(inverse.getVal()== new Placeholder(0, 0.0f, 0)):"La val ne sont pas les memes!";
 			catched = true;
 		}
 		if(!catched)

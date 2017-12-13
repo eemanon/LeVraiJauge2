@@ -145,7 +145,7 @@ public Placeholder getMax() {
 @Override
 public void validParams() throws IllegalArgumentException{
 	if(this.min>=this.max || this.valeur>this.max  || this.valeur < this.min)
-		throw new IllegalArgumentException("c'est pas naturel.");
+		throw new IllegalArgumentException("ce n'est pas très naturel");
 }
 
 }
